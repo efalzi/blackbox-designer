@@ -1,6 +1,6 @@
 @import "../../../../less/variables";
-@import "palette-right";
-@import "palette-left";
+@import "right/palette-right";
+@import "left/palette-left";
 
 #palette-layer {
   width: 100%;
@@ -43,11 +43,11 @@
   animation: move_top_sequence 1s linear; // IE10+ and Future Browsers
 }
 @-webkit-keyframes move_top_sequence {
-  0%    { opacity:1; margin-top: 0px; }
+  0%    { opacity:1; margin-top: 0; }
   100%  { opacity:0.5; margin-top: -30px; transition:1s margin-top,1s opacity; }
 }
 @keyframes move_top_sequence {
-  0%    { opacity:1; margin-top: 0px; }
+  0%    { opacity:1; margin-top: 0; }
   100%  { opacity:0.5; margin-top: -30px; transition:1s margin-top,1s opacity; }
 }
 .animate-top.ng-hide-remove {
@@ -55,10 +55,10 @@
   animation: move_bottom_sequence 1s linear; // IE10+ and Future Browsers
 }
 @-webkit-keyframes move_bottom_sequence {
-  100%  { opacity:1; margin-top: 0px; }
+  100%  { opacity:1; margin-top: 0; }
   0%    { opacity:0.5; margin-top: -30px;  transition:1s margin-top,1s opacity; }
 }
 @keyframes move_bottom_sequence {
-  100%  { opacity:1; margin-top: 0px; }
+  100%  { opacity:1; margin-top: 0; }
   0%    { opacity:0.5; margin-top: -30px;  transition:1s margin-top,1s opacity; }
 }

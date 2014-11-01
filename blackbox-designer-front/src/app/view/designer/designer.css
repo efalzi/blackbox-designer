@@ -242,7 +242,7 @@ input[type=text].palette-input {
 @-webkit-keyframes move_top_sequence {
   0% {
     opacity: 1;
-    margin-top: 0px;
+    margin-top: 0;
   }
   100% {
     opacity: 0.5;
@@ -253,7 +253,7 @@ input[type=text].palette-input {
 @keyframes move_top_sequence {
   0% {
     opacity: 1;
-    margin-top: 0px;
+    margin-top: 0;
   }
   100% {
     opacity: 0.5;
@@ -268,7 +268,7 @@ input[type=text].palette-input {
 @-webkit-keyframes move_bottom_sequence {
   100% {
     opacity: 1;
-    margin-top: 0px;
+    margin-top: 0;
   }
   0% {
     opacity: 0.5;
@@ -279,7 +279,7 @@ input[type=text].palette-input {
 @keyframes move_bottom_sequence {
   100% {
     opacity: 1;
-    margin-top: 0px;
+    margin-top: 0;
   }
   0% {
     opacity: 0.5;
