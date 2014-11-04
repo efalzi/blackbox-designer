@@ -1,0 +1,23 @@
+{
+  "name": "Blackbox Designer",
+  "version": "0.0.1",
+  "homepage": "https://github.com/efalzi/blackbox-designer",
+  "authors": [
+    "Elise Falzi <elise.falzi@gmail.com>"
+  ],
+  "description": "Blackbox Designer",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.22",
+    "angular-mocks": "~1.2.22"
+  }
+}

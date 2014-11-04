@@ -1,0 +1,36 @@
+<div ng-controller="MenuCtrl as ctrl">
+    <nav ng-mouseleave="ctrl.close()" id="menu">
+        <ul>
+            <li ng-mouseover="ctrl.open()">
+                <a href="#/dashboard"><span class="menu-icon glyphicon glyphicon-home"></span><span>Dashboard</span></a>
+            </li>
+            <li ng-mouseover="ctrl.open()">
+                <a href="#"><span class="menu-icon glyphicon glyphicon-th-large"></span><span>Blackboxes</span></a>
+                <ul id="blackboxes">
+                    <div>Bla bla</div>
+                    <a ng-click="ctrl.addCategory()"><span class="glyphicon glyphicon-plus"></span> Add a category</a>
+                    <li ng-mouseover="ctrl.open()" ng-repeat="blackbox in ctrl.model.blackboxes">
+                        <a href="#" <span class="glyphicon glyphicon-th"></span>{{blackbox.category}}</a>
+                        <ul>
+                            <li class="searchresult Label Spacer">Filter</li>
+                            <li ng-mouseover="ctrl.open()" ng-repeat="item in blackbox.list"><a href="#/designer?{{item.id}}">{{item.name}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li ng-mouseover="ctrl.open()">
+                <a href="#"><span class="menu-icon glyphicon glyphicon-certificate"></span><span>Boxlets</span></a>
+                <ul>
+                    <li ng-mouseover="ctrl.open()" ng-repeat="boxlet in ctrl.model.boxlets"><a href="#{{boxlet.url}}">{{boxlet.name}}</a></li>
+                </ul>
+            </li>
+
+            <li ng-mouseover="ctrl.open()">
+                <a href="#{{link.url}}"><span class="menu-icon glyphicon glyphicon-record"></span><span>Datasources</span></a>
+                <ul>
+                    <li ng-mouseover="ctrl.open()" ng-repeat="datasource in ctrl.model.datasources"><a href="#{{datasource.url}}">{{datasource.name}}</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>

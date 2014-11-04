@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Blackbox Designer</title>
+    <link rel="stylesheet" type="text/css" href="blackbox-designer.css"/>
+  </head>
+
+  <body ng-controller="AppCtrl">
+    <div>
+      <div ng-include="'header.tpl.html'"></div>
+      <div class="container-fluid">
+        <div ng-view />
+      </div>
+    </div>
+
+    <div ng-include="'navigation/menu/menu.tpl.html'"></div>
+
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript" src="bootstrap.js"></script>
+    <script type="text/javascript" src="blackbox-designer.js"></script>
+    <script type="text/javascript" src="jquery.mmenu.min.all.js"></script>
+
+  </body>
+</html>
