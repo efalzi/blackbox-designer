@@ -30,7 +30,6 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
     distdir: 'dist',
-    distdirext: 'dist/ext',
     pkg: grunt.file.readJSON('package.json'),
     banner:
     '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
@@ -50,16 +49,22 @@ module.exports = function (grunt) {
       less: ['src/less/stylesheet.less'], // recess:build doesn't accept ** in its file patterns
       lessWatch: ['src/less/**/*.less']
     },
-    clean: ['<%= distdir %>/*', '<%= distdirext %>/*'],
+    clean: ['<%= distdir %>/*', '<%= distdir %>/ext/*'],
     copy: {
       assets: {
         files: [{ dest: '<%= distdir %>', src : '**', expand: true, cwd: 'src/assets/' }]
       },
+      log4js: {
+        files: [{ dest: '<%= distdir %>/ext', src : '**.js', expand: true, cwd: 'vendor/log4js/log4js/src/main/js/'}]
+      },
       jquery_mmenu: {
-        files: [{ dest: '<%= distdirext %>', src : 'jquery.mmenu.min.all.js', expand: true, cwd: 'vendor/jQuery.mmenu/src/js/'}]
+        files: [{ dest: '<%= distdir %>/ext', src : 'jquery.mmenu.min.all.js', expand: true, cwd: 'vendor/jQuery.mmenu/src/js/'}]
       },
       draw2d_dep: {
-        files: [{ dest: '<%= distdirext %>', src : [ '**', '!jquery-1.10.2.min.js'], cwd : 'vendor/draw2d/lib', expand: true}]
+        files: [{ dest: '<%= distdir %>/ext', src : [ '**', '!jquery-1.10.2.min.js'], cwd : 'vendor/draw2d/lib', expand: true}]
+      },
+      angular_mocks: {
+        files: [{ dest: '<%= distdir %>/ext', src : [ '**.js'], cwd : 'vendor/angular-mocks', expand: true}]
       }
     },
     karma: {
@@ -101,27 +106,31 @@ module.exports = function (grunt) {
       },
       angular: {
         src:['vendor/angular/**.js'],
-        dest: '<%= distdirext %>/angular.js'
+        dest: '<%= distdir %>/ext/angular.js'
       },
       angular_route: {
         src:['vendor/angular-route/**.js'],
-        dest: '<%= distdirext %>/angular-route.js'
+        dest: '<%= distdir %>/ext/angular-route.js'
       },
       angular_animate: {
         src:['vendor/angular-animate/**.js'],
-        dest: '<%= distdirext %>/angular-animate.js'
+        dest: '<%= distdir %>/ext/angular-animate.js'
+      },
+      angular_resource: {
+        src:['vendor/angular-resource/**.js'],
+        dest: '<%= distdir %>/ext/angular-resource.js'
       },
       bootstrap: {
         src:['vendor/angular-ui/bootstrap/*.js'],
-        dest: '<%= distdirext %>/bootstrap.js'
+        dest: '<%= distdir %>/ext/bootstrap.js'
       },
       jquery: {
         src:['vendor/jquery/dist/*.js'],
-        dest: '<%= distdirext %>/jquery.js'
+        dest: '<%= distdir %>/ext/jquery.js'
       },
       draw2d: {
         src:['vendor/draw2d/dist/**/*.js'],
-        dest: '<%= distdirext %>/draw2d.js'
+        dest: '<%= distdir %>/ext/draw2d.js'
       }
     },
     uglify: {

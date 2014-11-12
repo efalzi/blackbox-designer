@@ -10,7 +10,13 @@ var app = angular.module('app', [
     'services.httpRequestTracker',
     'security',
     'templates.app',
-    'templates.common']);
+    'templates.common',
+    'appMocks']);
+
+app.constant('Config', {
+    useMocks:           true,
+    serverBaseUrl:     'http://localhost:8080/blackbox-execution'
+});
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.

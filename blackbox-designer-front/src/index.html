@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="<%= grunt.config.get('pkg.name') %>.css"/>
   </head>
 
-  <body ng-controller="AppCtrl">
-    <div>
+  <body>
+    <div ng-controller="AppCtrl">
       <div ng-include="'navigation/header/header.tpl.html'"></div>
       <div class="view-animate-container">
         <div ng-view class="view-animate"/>
@@ -35,9 +35,12 @@
     <!-- Angular -->
     <script type="text/javascript" src="ext/angular.js"></script>
     <script type="text/javascript" src="ext/angular-animate.js"></script>
+    <script type="text/javascript" src="ext/angular-resource.js"></script>
     <script type="text/javascript" src="ext/angular-route.js"></script>
+    <script type="text/javascript" src="ext/angular-mocks.js"></script>
 
     <script type="text/javascript" src="ext/bootstrap.js"></script>
+    <script type="text/javascript" src="ext/log4js.js"></script>
 
     <script type="text/javascript" src="<%= grunt.config.get('pkg.name') %>.js"></script>
 
