@@ -1,7 +1,10 @@
 'use strict';
 var app = angular.module('app', [
     'ngRoute',
+    'ngAnimate',
     'dashboard',
+    'designer',
+    'navigation.header',
     'navigation.menu',
     'services.i18nNotifications',
     'services.httpRequestTracker',
@@ -9,16 +12,15 @@ var app = angular.module('app', [
     'templates.app',
     'templates.common']);
 
-app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.
         when('/dashboard', {
-            controller: 'DashboardCtrl',
             templateUrl: 'dashboard/dashboard.tpl.html'
         }).
-        when('/designer', {
-            controller: 'DesignerCtrl',
+        when('/designer/:id', {
             templateUrl: 'designer/designer.tpl.html'
         });
+    //$locationProvider.html5Mode(true);
 }]);
 
 app.controller('AppCtrl', ['$scope', 'i18nNotifications', 'localizedMessages', function($scope, i18nNotifications, localizedMessages) {
@@ -33,23 +35,3 @@ app.controller('AppCtrl', ['$scope', 'i18nNotifications', 'localizedMessages', f
         i18nNotifications.pushForCurrentRoute('errors.route.changeError', 'error', {}, {rejection: rejection});
     });
 }]);
-
-app.controller('HeaderCtrl', ['$scope', '$location', '$route', 'security', 'notifications', 'httpRequestTracker',
-    function ($scope, $location, $route, security, notifications, httpRequestTracker) {
-        $scope.location = $location;
-
-        $scope.isAuthenticated = security.isAuthenticated;
-        $scope.isAdmin = security.isAdmin;
-
-        $scope.home = function () {
-            if (security.isAuthenticated()) {
-                $location.path('/dashboard');
-            } else {
-                $location.path('/home');
-            }
-        };
-
-        $scope.hasPendingRequests = function () {
-            return httpRequestTracker.hasPendingRequests();
-        };
-    }]);

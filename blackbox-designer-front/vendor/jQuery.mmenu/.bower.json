@@ -35,7 +35,6 @@
     "commit": "480c0fb4f95dc31657192674cd76facce0a9a628"
   },
   "_source": "git://github.com/BeSite/jQuery.mmenu.git",
-  "_target": "~4.6.1",
-  "_originalSource": "jQuery.mmenu",
-  "_direct": true
+  "_target": "4.6.1",
+  "_originalSource": "jQuery.mmenu"
 }

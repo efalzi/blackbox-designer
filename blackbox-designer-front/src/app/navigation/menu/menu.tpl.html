@@ -1,32 +1,38 @@
 <div ng-controller="MenuCtrl as ctrl">
     <nav ng-mouseleave="ctrl.close()" id="menu">
         <ul>
-            <li ng-mouseover="ctrl.open()">
-                <a href="#/dashboard"><span class="menu-icon glyphicon glyphicon-home"></span><span>Dashboard</span></a>
+            <li ng-mouseover="ctrl.open()" class="root">
+                <a href="#/dashboard"><i class="menu-icon glyphicon glyphicon-home" />Dashboard</a>
             </li>
             <li ng-mouseover="ctrl.open()">
-                <a href="#"><span class="menu-icon glyphicon glyphicon-th-large"></span><span>Blackboxes</span></a>
-                <ul id="blackboxes">
-                    <div>Bla bla</div>
-                    <a ng-click="ctrl.addCategory()"><span class="glyphicon glyphicon-plus"></span> Add a category</a>
+                <a><i class="menu-icon glyphicon glyphicon-th-large"/>Blackboxes</a>
+                <ul>
+                    <div class="intro">Regroupez vos blackboxes par catégories afin de mieux vous organiser.
+                        <a ng-click="ctrl.addCategory()" class="link"><i class="glyphicon glyphicon-plus"/> Ajouter une catégorie</a>
+                    </div>
                     <li ng-mouseover="ctrl.open()" ng-repeat="blackbox in ctrl.model.blackboxes">
-                        <a href="#" <span class="glyphicon glyphicon-th"></span>{{blackbox.category}}</a>
+                        <a href="#"><i class="menu-icon {{blackbox.class}}"/>{{blackbox.category}}</a>
                         <ul>
-                            <li class="searchresult Label Spacer">Filter</li>
-                            <li ng-mouseover="ctrl.open()" ng-repeat="item in blackbox.list"><a href="#/designer?{{item.id}}">{{item.name}}</a></li>
+                            <div class="intro">Vous pouvez importer une blackbox à partir du Blackbox Market
+                                ou créer vos propres blackboxes.
+                                <a ng-click="ctrl.addBlackbox()" class="link"><i class="glyphicon glyphicon-plus" /> Créer une nouvelle blackbox</a>
+                            </div>
+                            <li ng-mouseover="ctrl.open()" ng-repeat="item in blackbox.list">
+                                <a href="#/designer/{{item.id}}"><i class="menu-icon {{item.class}}"/>{{item.name}}</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </li>
             <li ng-mouseover="ctrl.open()">
-                <a href="#"><span class="menu-icon glyphicon glyphicon-certificate"></span><span>Boxlets</span></a>
+                <a href="#"><i class="menu-icon glyphicon glyphicon-certificate" />Boxlets</a>
                 <ul>
-                    <li ng-mouseover="ctrl.open()" ng-repeat="boxlet in ctrl.model.boxlets"><a href="#{{boxlet.url}}">{{boxlet.name}}</a></li>
+                    <li ng-mouseover="ctrl.open()" ng-repeat="boxlet in ctrl.model.boxlets"><a href="#" class="draw2d_shape_node_Start" name="{{boxlet.name}}">{{boxlet.name}}</a></li>
                 </ul>
             </li>
 
             <li ng-mouseover="ctrl.open()">
-                <a href="#{{link.url}}"><span class="menu-icon glyphicon glyphicon-record"></span><span>Datasources</span></a>
+                <a href="{{link.url}}"><i class="menu-icon glyphicon glyphicon-record" />Datasources</a>
                 <ul>
                     <li ng-mouseover="ctrl.open()" ng-repeat="datasource in ctrl.model.datasources"><a href="#{{datasource.url}}">{{datasource.name}}</a></li>
                 </ul>

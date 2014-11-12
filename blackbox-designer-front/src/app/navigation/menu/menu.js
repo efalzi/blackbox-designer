@@ -5,16 +5,15 @@ var module = angular.module("navigation.menu", ['security']);
 module.factory('model', function() {
     return {
         isOpen: false,
-        "title" : "Blackbox Designer",
         "blackboxes" : [
-            {"category" : "Electrotechnique", "list": [
-                {"name": "Magnétique", "id": "1"},
-                {"name": "Thermique", "id": "2"},
-                {"name": "Electrique", "id": "3"},
-                {"name": "Pertes Cu & Fe", "id": "4"}
+            {"category" : "Electrotechnique", "class": "glyphicon glyphicon-th", "list": [
+                {"name": "Magnétique", "id": "1", "class": "glyphicon glyphicon-th"},
+                {"name": "Thermique", "id": "2", "class": "glyphicon glyphicon-th"},
+                {"name": "Electrique", "id": "3", "class": "glyphicon glyphicon-th"},
+                {"name": "Pertes Cu & Fe", "id": "4", "class": "glyphicon glyphicon-th"}
                 ]},
-            {"category" : "Sport", "list": [
-                {"name": "Trajectoire lissée", "id": "5"}
+            {"category" : "Sport", "class": "glyphicon glyphicon-th", "list": [
+                {"name": "Trajectoire lissée", "id": "5", "class": "glyphicon glyphicon-th"}
             ]}
         ],
         "boxlets" : [
@@ -26,7 +25,9 @@ module.factory('model', function() {
 
 module.controller('MenuCtrl', ['model', function (model) {
 
-    var self = this;
+    var self = this,
+        menu = $('#menu');
+
     self.model = model;
 
     self.open = function () {
@@ -35,10 +36,19 @@ module.controller('MenuCtrl', ['model', function (model) {
 
     self.close = function () {
         model.isOpen = false;
+        self.rerender();
     };
+
+    self.rerender = function () {
+        $("#menu").init();
+    }
 
     self.isOpen = function () {
         return model.isOpen;
+    };
+
+    self.addCategory = function () {
+        model.blackboxes.push({"category" : "New category", "class": "glyphicon glyphicon-th"});
     };
 }]);
 
@@ -50,26 +60,19 @@ module.directive('nav', ['$interval', function ($interval) {
         scope.$watch('ctrl.model.isOpen', toggleDisplay);
 
         function toggleDisplay() {
-            !scope.ctrl.model.isOpen ? element.trigger("close.mm") : close();
+            !scope.ctrl.model.isOpen ? close() : open();
         }
-
-        function close() {
+        function open() {
             element.trigger("open.mm");
         }
-        element.on('$destroy', function() {
-            $interval.cancel(timeoutId);
-        });
-
-        // start the UI update; save the timeoutId for canceling
-        timeoutId = $interval(function() {
-            $(element).mmenu({
+        function close() {
+            element.find(".mm-panel").first().trigger( "open.mm" );
+            element.trigger("close.mm");
+        }
+        function render() {
+            element.mmenu({
                 counters: true,
-                header		: true,
-                searchfield	: {
-                    add			: true,
-                    addTo		: '#blackboxes',
-                    placeholder	: 'Filter '
-                },
+                header : true,
                 footer : {
                     add     : true,
                     update  : true
@@ -85,7 +88,16 @@ module.directive('nav', ['$interval', function ($interval) {
                     }
                 }
             });
-        }, 0);
+        }
+
+        element.on('$destroy', function() {
+            $interval.cancel(timeoutId);
+        });
+
+        // start the UI update; save the timeoutId for canceling
+        timeoutId = $interval(function() {
+            render();
+        }, 0, 1);
     }
 
     return {
