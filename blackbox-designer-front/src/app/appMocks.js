@@ -31,34 +31,95 @@ appMocks.run(['$http', '$httpBackend', 'Config', function($http, $httpBackend, C
 
     // returns the current list of blackboxes
     var json = [{
-            "type": "draw2d.shape.node.Start", "id": "354fa3b9-a834-0221-2009-abc2d6bd852a",
-            "x": 25, "y": 97, "width": 50, "height": 50, "alpha": 1, "cssClass": "draw2d_shape_node_Start",
-            "ports": [{"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}],
-            "bgColor": "#4D90FE", "color": "#000000", "stroke": 1, "radius": 2,
-            "userData": {}
+            "type": "draw2d.shape.icon.CsvFile", "id": "input_csv_1", "x": 25, "y": 45,"userData": {},
+            "ports": [{"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
         },
-        {   "type": "draw2d.shape.node.End", "id": "ebfb35bb-5767-8155-c804-14bda7759dc2",
-            "x": 272, "y": 45, "width": 50, "height": 50, "alpha": 1, "userData": {}, "cssClass": "draw2d_shape_node_End",
-            "ports": [{"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"}],
-            "bgColor": "#4D90FE",
-            "color": "#000000",
-            "stroke": 1,
-            "radius": 2
+        {   "type": "draw2d.shape.icon.Filter", "id": "filter_1", "x": 252, "y": 45, "userData": {},
+            "ports": [
+                {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
+                {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"},
+                {"name": "output1", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
         },
-        {   "type": "draw2d.Connection", "id": "74ce9e7e-5f0e-8642-6bec-4ff9c54b3f0a",
-            "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
-            "outlineColor": "none", "policy": "draw2d.policy.line.LineSelectionFeedbackPolicy",
-            "router": "draw2d.layout.connection.ManhattanConnectionRouter", "radius": 2,
-            "source": {
-                "node": "354fa3b9-a834-0221-2009-abc2d6bd852a",
-                "port": "output0"
-            },
-            "target": {
-                "node": "ebfb35bb-5767-8155-c804-14bda7759dc2",
-                "port": "input0"
-            }
+        {   "type": "draw2d.shape.icon.Boxlet", "id": "projection_center", "x": 380, "y": 145, "userData": {},
+            "ports": [
+                {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
+                {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
+        },
+        {   "type": "draw2d.shape.icon.Map", "id": "mapping_1", "x": 550, "y": 45, "userData": {},
+            "ports": [
+                {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
+                {"name": "input1", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
+                {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
+        },
+        {   "type": "draw2d.shape.icon.Boxlet", "id": "local_projection", "x": 650, "y": 45, "userData": {},
+            "ports": [
+                {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
+                {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
+        },
+        {   "type": "draw2d.shape.icon.Loop", "id": "loop_1", "x": 750, "y": 45, "userData": {},
+            "ports": [
+                {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
+                {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
+        },
+        {   "type": "draw2d.shape.icon.Boxlet", "id": "cubic_spline", "x": 850, "y": 45, "userData": {},
+            "ports": [
+                {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
+                {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.BottomLocator"}]
+        },
+        {   "type": "draw2d.shape.icon.Map", "id": "mapping_2", "x": 850, "y": 150, "userData": {},
+            "ports": [
+                {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.TopLocator"},
+                {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.BottomLocator"}]
+        },
+        {   "type": "draw2d.shape.icon.Curve3d", "id": "3d_trajectory", "x": 750, "y": 250, "userData": {},
+            "ports": [{"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.TopLocator"}]
+        },
+        {   "type": "draw2d.Connection", "id": "connect1", "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
+            "outlineColor": "none", "policy": "draw2d.policy.line.LineSelectionFeedbackPolicy", "router": "draw2d.layout.connection.DirectRouter", "radius": 2,
+            "source": {"node": "input_csv_1", "port": "output0"},
+            "target": {"node": "filter_1", "port": "input0"}
+        },
+        {   "type": "draw2d.Connection", "id": "connect2", "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
+            "outlineColor": "none", "policy": "draw2d.policy.line.LineSelectionFeedbackPolicy", "router": "draw2d.layout.connection.DirectRouter", "radius": 2,
+            "source": {"node": "filter_1", "port": "output0"},
+            "target": {"node": "mapping_1", "port": "input0"}
+        },
+        {   "type": "draw2d.Connection", "id": "connect3", "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
+            "outlineColor": "none", "policy": "draw2d.policy.line.LineSelectionFeedbackPolicy", "router": "draw2d.layout.connection.DirectRouter", "radius": 2,
+            "source": {"node": "mapping_1", "port": "output0"},
+            "target": {"node": "local_projection", "port": "input0"}
+        },
+        {   "type": "draw2d.Connection", "id": "connect4", "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
+            "outlineColor": "none", "policy": "draw2d.policy.line.LineSelectionFeedbackPolicy", "router": "draw2d.layout.connection.DirectRouter", "radius": 2,
+            "source": {"node": "local_projection", "port": "output0"},
+            "target": {"node": "loop_1", "port": "input0"}
+        },
+        {   "type": "draw2d.Connection", "id": "connect5", "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
+            "outlineColor": "none", "policy": "draw2d.policy.line.LineSelectionFeedbackPolicy", "router": "draw2d.layout.connection.DirectRouter", "radius": 2,
+            "source": {"node": "loop_1", "port": "output0"},
+            "target": {"node": "cubic_spline", "port": "input0"}
+        },
+        {   "type": "draw2d.Connection", "id": "connect6", "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
+            "outlineColor": "none", "policy": "draw2d.policy.line.LineSelectionFeedbackPolicy", "router": "draw2d.layout.connection.DirectRouter", "radius": 2,
+            "source": {"node": "cubic_spline", "port": "output0"},
+            "target": {"node": "mapping_2", "port": "input0"}
+        },
+        {   "type": "draw2d.Connection", "id": "connect7", "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
+            "outlineColor": "none", "policy": "draw2d.policy.line.LineSelectionFeedbackPolicy", "router": "draw2d.layout.connection.DirectRouter", "radius": 2,
+            "source": {"node": "mapping_2", "port": "output0"},
+            "target": {"node": "3d_trajectory", "port": "input0"}
+        },
+        {   "type": "draw2d.Connection", "id": "connect8", "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
+            "outlineColor": "none", "policy": "draw2d.policy.line.LineSelectionFeedbackPolicy", "router": "draw2d.layout.connection.DirectRouter", "radius": 2,
+            "source": {"node": "filter_1", "port": "output1"},
+            "target": {"node": "projection_center", "port": "input0"}
+        },
+        {   "type": "draw2d.Connection", "id": "connect9", "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
+            "outlineColor": "none", "policy": "draw2d.policy.line.LineSelectionFeedbackPolicy", "router": "draw2d.layout.connection.DirectRouter", "radius": 2,
+            "source": {"node": "projection_center", "port": "output0"},
+            "target": {"node": "mapping_1", "port": "input1"}
         }
     ];
-    $httpBackend.whenGET(Config.serverBaseUrl + '/blackbox/1/json').respond(json);
+    $httpBackend.whenGET(Config.serverBaseUrl + '/blackbox/5/json').respond(json);
 
 }]);

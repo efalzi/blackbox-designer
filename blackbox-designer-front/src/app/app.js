@@ -8,6 +8,7 @@ var app = angular.module('app', [
     'navigation.menu',
     'services.i18nNotifications',
     'services.httpRequestTracker',
+    'services.blackbox',
     'security',
     'templates.app',
     'templates.common',

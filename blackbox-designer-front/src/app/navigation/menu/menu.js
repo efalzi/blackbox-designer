@@ -2,16 +2,16 @@
  * Created by efalzi on 29/10/2014.
  */
 var module = angular.module("navigation.menu", ['security']);
-module.factory('model', function() {
-    return {
-        isOpen: false,
-        "blackboxes" : [
+module.factory('model', ['$http', 'Config', function($http, Config) {
+    var menu = {
+        "isOpen": false,
+        "blackboxes": [
             {"category" : "Electrotechnique", "class": "glyphicon glyphicon-th", "list": [
                 {"name": "Magnétique", "id": "1", "class": "glyphicon glyphicon-th"},
                 {"name": "Thermique", "id": "2", "class": "glyphicon glyphicon-th"},
                 {"name": "Electrique", "id": "3", "class": "glyphicon glyphicon-th"},
                 {"name": "Pertes Cu & Fe", "id": "4", "class": "glyphicon glyphicon-th"}
-                ]},
+            ]},
             {"category" : "Sport", "class": "glyphicon glyphicon-th", "list": [
                 {"name": "Trajectoire lissée", "id": "5", "class": "glyphicon glyphicon-th"}
             ]}
@@ -20,10 +20,13 @@ module.factory('model', function() {
             {"name": "Splines cubiques"}
         ],
         "datasources" : []
-    }
-});
+    };
 
-module.controller('MenuCtrl', ['model', function (model) {
+    return menu;
+
+}]);
+
+module.controller('MenuCtrl', ['$http', 'model', 'Config', function ($http, model, Config) {
 
     var self = this,
         menu = $('#menu');
@@ -48,7 +51,11 @@ module.controller('MenuCtrl', ['model', function (model) {
     };
 
     self.addCategory = function () {
-        model.blackboxes.push({"category" : "New category", "class": "glyphicon glyphicon-th"});
+        var url = Config.serverBaseUrl + '/blackbox/add',
+            emptyCategory = {"category" : "New category", "class": "glyphicon glyphicon-th"};
+        $http.post(url, emptyCategory).success(function(data, status, headers, config) {
+            model.blackboxes.push(data);
+        });
     };
 }]);
 
