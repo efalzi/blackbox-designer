@@ -1,0 +1,23 @@
+<div>
+    <div palette>
+        <div class="row-fluid pull-right">
+
+            <div ng-controller="PaletteTopCtrl as ctrl"
+                 ng-include="'view/designer/palette/palette-top.tpl.html'" class="span9 offset1"></div>
+
+            <div ng-controller="PaletteCtrl as ctrl" class="pull-right span1 offset1">
+                <button type="button" class="btn btn-inverse" ng-click="ctrl.toggle()">
+                    <span class="glyphicon {{ctrl.palette.visible ? 'glyphicon-fullscreen' : 'glyphicon-resize-small'}}" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div ng-controller="PaletteLeftCtrl as ctrl"
+                 ng-include="'view/designer/palette/palette-left.tpl.html'" class="span6"></div>
+
+            <div ng-controller="PaletteRightCtrl as ctrl"
+                 ng-include="'view/designer/palette/palette-right.tpl.html'" class="pull-right span6"></div>
+        </div>
+
+    </div>
+</div>
