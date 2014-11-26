@@ -121,7 +121,7 @@ module.exports = function (grunt) {
         dest: '<%= distdir %>/ext/angular-resource.js'
       },
       bootstrap: {
-        src:['vendor/angular-ui/bootstrap/*.js'],
+        src:['vendor/angular-ui/bootstrap/*.js','vendor/bootstrap/js/bootstrap.js'],
         dest: '<%= distdir %>/ext/bootstrap.js'
       },
       jquery: {

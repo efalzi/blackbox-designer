@@ -31,47 +31,47 @@ appMocks.run(['$http', '$httpBackend', 'Config', function($http, $httpBackend, C
 
     // returns the current list of blackboxes
     var json = [{
-            "type": "draw2d.shape.icon.CsvFile", "id": "input_csv_1", "x": 25, "y": 45,"userData": {},
+            "type": "draw2d.shape.icon.CsvFile", "id": "input_csv_1", "x": 65, "y": 75,"userData": {},
             "ports": [{"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
         },
-        {   "type": "draw2d.shape.icon.Filter", "id": "filter_1", "x": 252, "y": 45, "userData": {},
+        {   "type": "draw2d.shape.icon.Filter", "id": "filter_1", "x": 292, "y": 75, "userData": {},
             "ports": [
                 {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
                 {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"},
                 {"name": "output1", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
         },
-        {   "type": "draw2d.shape.icon.Boxlet", "id": "projection_center", "x": 380, "y": 145, "userData": {},
+        {   "type": "draw2d.shape.icon.Boxlet", "id": "projection_center", "x": 420, "y": 175, "userData": {},
             "ports": [
                 {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
                 {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
         },
-        {   "type": "draw2d.shape.icon.Map", "id": "mapping_1", "x": 550, "y": 45, "userData": {},
+        {   "type": "draw2d.shape.icon.Map", "id": "mapping_1", "x": 550, "y": 75, "userData": {},
             "ports": [
                 {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
                 {"name": "input1", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
                 {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
         },
-        {   "type": "draw2d.shape.icon.Boxlet", "id": "local_projection", "x": 650, "y": 45, "userData": {},
+        {   "type": "draw2d.shape.icon.Boxlet", "id": "local_projection", "x": 650, "y": 75, "userData": {},
             "ports": [
                 {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
                 {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
         },
-        {   "type": "draw2d.shape.icon.Loop", "id": "loop_1", "x": 750, "y": 45, "userData": {},
+        {   "type": "draw2d.shape.icon.Loop", "id": "loop_1", "x": 750, "y": 75, "userData": {},
             "ports": [
                 {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
                 {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.OutputPortLocator"}]
         },
-        {   "type": "draw2d.shape.icon.Boxlet", "id": "cubic_spline", "x": 850, "y": 45, "userData": {},
+        {   "type": "draw2d.shape.icon.Boxlet", "id": "cubic_spline", "x": 850, "y": 75, "userData": {},
             "ports": [
                 {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.InputPortLocator"},
                 {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.BottomLocator"}]
         },
-        {   "type": "draw2d.shape.icon.Map", "id": "mapping_2", "x": 850, "y": 150, "userData": {},
+        {   "type": "draw2d.shape.icon.Map", "id": "mapping_2", "x": 850, "y": 180, "userData": {},
             "ports": [
                 {"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.TopLocator"},
                 {"name": "output0", "port": "draw2d.OutputPort", "locator": "draw2d.layout.locator.BottomLocator"}]
         },
-        {   "type": "draw2d.shape.icon.Curve3d", "id": "3d_trajectory", "x": 750, "y": 250, "userData": {},
+        {   "type": "draw2d.shape.icon.Curve3d", "id": "3d_trajectory", "x": 750, "y": 280, "userData": {},
             "ports": [{"name": "input0", "port": "draw2d.InputPort", "locator": "draw2d.layout.locator.TopLocator"}]
         },
         {   "type": "draw2d.Connection", "id": "connect1", "alpha": 1, "userData": {}, "cssClass": "draw2d_Connection", "stroke": 1, "color": "#1B1B1B", "outlineStroke": 0,
@@ -121,5 +121,13 @@ appMocks.run(['$http', '$httpBackend', 'Config', function($http, $httpBackend, C
         }
     ];
     $httpBackend.whenGET(Config.serverBaseUrl + '/blackbox/5/json').respond(json);
+
+    var paletteComponents = [
+        {"name":"draw2d.shape.icon.CsvFile","category":"datasource"},
+        {"name":"draw2d.shape.icon.Filter", "category":"filtering"},
+        {"name":"draw2d.shape.icon.Loop", "category":"transformation"}
+    ];
+
+    $httpBackend.whenGET(Config.serverBaseUrl + '/designer/components').respond(paletteComponents);
 
 }]);

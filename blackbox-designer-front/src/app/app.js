@@ -2,8 +2,8 @@
 var app = angular.module('app', [
     'ngRoute',
     'ngAnimate',
-    'dashboard',
-    'designer',
+    'view.dashboard',
+    'view.designer',
     'navigation.header',
     'navigation.menu',
     'services.i18nNotifications',
@@ -19,15 +19,15 @@ app.constant('Config', {
     serverBaseUrl:     'http://localhost:8080/blackbox-execution'
 });
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/dashboard', {
-            templateUrl: 'dashboard/dashboard.tpl.html'
+            templateUrl: 'view/dashboard/dashboard.tpl.html'
         }).
         when('/designer/:id', {
-            templateUrl: 'designer/designer.tpl.html'
+            templateUrl: 'view/designer/designer.tpl.html'
         });
-    //$locationProvider.html5Mode(true);
+    //$animateProvider.classNamePrefix("animate-");
 }]);
 
 app.controller('AppCtrl', ['$scope', 'i18nNotifications', 'localizedMessages', function($scope, i18nNotifications, localizedMessages) {
